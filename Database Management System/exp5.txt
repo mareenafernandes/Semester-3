@@ -1,0 +1,33 @@
+1) create table sales_order_details(order_no varchar(6),product_no varchar(6),Qty_ordered numeric(8),Qty_disp numeric(8),product_rate numeric(10,2));
+
+	Query returned successfully with no result in 103 msec.
+
+2) insert into sales_order_details values('A1001', '1', 2, 2, 7000.89);
+   insert into sales_order_details values('A1035', '8', 2, 1, 8800.89);
+   insert into sales_order_details values('A1111', '13', 5, 3, 1200.89);
+   insert into sales_order_details values('A1096', '7', 7, 6, 4500.89);
+   insert into sales_order_details values('A1046', '17', 4, 4, 9000.89);
+
+	Query returned successfully: one row affected, 33 msec execution time.
+
+3) select description, Qty_ordered from product_master left join sales_order_details on product_master.product_no = sales_order_details.product_no;
+
+	Total query runtime: 22 msec
+	3 rows retrieved.
+
+4) select product_rate from sales_order_details;
+
+	Total query runtime: 12 msec
+	5 rows retrieved.
+
+5) select avg(Qty_ordered) from sales_order_details where product_rate*Qty_ordered<=15000;
+
+	Total query runtime: 11 msec
+	1 row retrieved.
+
+6) select sum(Qty_ordered*product_rate)from sales_order_details left outer join sales_orders on sales_order_details.order_no=sales_orders.orderno where to_char(sales_orders.orderdate,'mm')='01';
+
+	Total query runtime: 41 msec
+	1 row retrieved.
+
+

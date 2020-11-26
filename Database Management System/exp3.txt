@@ -1,0 +1,45 @@
+1) create table client_master(Client_no varchar(6), Name varchar(20), Address varchar(30), City varchar(15), Pincode numeric(8), State varchar(15), Bal_due numeric(10,2));
+
+	Query returned successfully with no result in 13 msec.
+
+2) create table product_master(product_no varchar(6), description varchar(15), Profit_percent numeric(4,2), unit_measure varchar(10), Qty_on_hand numeric(8), 
+   Reorder_level numeric(8), Sell_price numeric(8,2), cost_price numeric(8,2));
+
+	Query returned successfully with no result in 13 msec.
+
+3) insert into client_master values('1','Raul','Vakola','Suburbs',400054,'Maharashtra',1.11);
+   insert into client_master values('2','Shounak','Kalina','Suburbs',400054,'Maharashtra',2745.12);
+   insert into client_master values('3','Saif','Antop Hill','Harbour',400008,'Maharashtra',176746.627);
+   insert into client_master values('4','Soumil','Mahim','SoBo',400069,'Maharashtra',69420.69);
+   insert into client_master values('5','Shantanu','Mumbai','Suburbs',400049,'Goa',337737.11);
+
+	Query returned successfully: one row affected, 12 msec execution time.
+
+  insert into product_master values('1','Healthy',40.09,'468',4,3,5000,7000.89);
+  insert into product_master values('8','Alcoholic',4.97,'423',3,1,9000,8800.89);
+  insert into product_master values('13','Water Proof',56.24,'477',5,0,50000,1200.89);
+  insert into product_master values('7','Shake Before',89.09,'467',8,2,2000,4500.89);
+  insert into product_master values('17','Not Good',98.45,'434',7,3,5070,9000.89);
+
+	Query returned successfully: one row affected, 12 msec execution time.
+
+3) select Name from client_master;
+
+4) select * from client_master;
+
+5) select Name, City from client_master;
+
+6) select * from product_master;
+
+7) select * from client_master where address like 'Vakola';
+
+8) update client_master set Address='Mumbai' where client_no = '4';
+
+9) update client_master set Bal_due = 1000 where client_no = '3';
+
+10) update product_master set cost_price = 3000 where description = 'Shake Before';
+
+11) delete from product_master where Qty_on_hand < 5;
+
+12) delete from clientmaster_ where state='Goa';
+

@@ -1,0 +1,44 @@
+package javapracs;
+
+
+import java.sql.*;
+import java.util.*;
+
+
+public class JdbcDemo {
+    
+    public static void main(String args[]){
+        
+      Connection c = null;
+      Statement stmt = null;
+        
+           try{ 
+               Class.forName("org.postgresql.Driver");
+
+
+               String url = "jdbc:postgresql://7.1.1.114:5432/dbms2019";
+               String username = "s8669";
+               String password = "passwd";
+                         
+               Connection con = DriverManager.getConnection(url,username,password);          
+               System.out.println("Database connected successfully.");
+               
+               Statement st = con.createStatement();
+               
+               String query = "Create Table employees(e_id int Primary Key,emp_name varchar(20),emp_address varchar(30))";
+               
+               ResultSet rs = st.executeQuery(query);
+               System.out.println("Query executed succesfully.Table emp was created");
+               
+               query = "Insert into employees values(1,'Mareena','Mumbai')";
+               st.executeQuery(query);
+               System.out.println("Query executed successfully and values were added to employees");
+               
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+           
+        
+    }
+    
+}

@@ -1,0 +1,51 @@
+1) create table sales_order(order_no varchar(6),order_date date,client_no varchar(6),dely_addr varchar(25),salesman_no varchar(6),dely_type char,billed_yn char,dely_date date,order_status varchar(10))
+
+	Query returned successfully with no result in 11 msec.
+
+2) insert into sales_order values('A1001','2010-11-01','1','Vakola','1','A','E','2010-11-05','Y');
+   insert into sales_order values('A1035','2012-03-02','2','Kalina','2','B','D','2012-03-04','Y');
+   insert into sales_order values('A1111','2025-02-03','3','Antop Hill','3','C','C','2025-02-15','N');
+   insert into sales_order values('A1096','2050-01-09','4','Mahim','4','D','B','2050-01-10','N');
+   insert into sales_order values('A1046','2001-12-08','5','Mumbai','5','E','A','2001-12-10','Y');
+
+	Query returned successfully: one row affected, 11 msec execution time.
+
+3) Select name from client_master where name like '_a%';
+
+4) Select * from client_master where city like '_a%';
+
+5) Select * from client_master where city='Mumbai';
+
+6) Select * from client_master where bal_due>10000;
+
+7) Select * from sales_order where extract(Month from order_date)='01';
+
+8) Select * from sales_order where client_no='1' union Select * from sales_order where client_no='2';
+
+9) Select * from product_master where Sell_price>2000 and Sell_price<=6000;
+
+10) update product_master set sell_price=sell_price * 1.5;
+    alter table product_master rename column sell_price to new_price;
+
+	Query returned successfully: 3 rows affected, 12 msec execution time.
+
+11) select count(client_no) from sales_order;
+
+12) select min(new_price),max(new_price) from product_master;
+
+13) select count(product_no) from product_master where new_price>=1500;
+
+14) select order_no,order_date from sales_order;
+
+15) select order_no,to_char(order_date,'dd') from sales_order;
+
+16) select to_char(order_date,'dd/mm/yyyy') from sales_order;
+
+17) select to_char(order_date,'dd/month/yyyy') from sales_order;
+
+18) select to_char(order_date, 'dd-MONTH') from sales_order;
+
+19) select to_char(current_date+15,'dd');
+
+20) select now()-dely_date from sales_order;
+

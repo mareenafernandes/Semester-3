@@ -1,0 +1,56 @@
+1) create table Student ( id numeric(3) , name varchar(20) ,address varchar(30),dept varchar(20), marks numeric(3));
+
+	Query returned successfully with no result in 14 msec.
+
+2) insert into Student values (1,'Anu','Dadar','IT',99);
+   insert into Student values (2,'Sijoy','Sion','Prod',6);
+   insert into Student values (3,'Mahesh','Pandarpur','IT',32);
+   insert into Student values (4,'Ridhi','Vasai','CS',69);
+   insert into Student values (5,'Tanisha','Virar','IT',32);
+   insert into Student values (6,'Swijel','Kurla','ELEX',51);
+   insert into Student values (7,'Sloan','Kandivali','CS',51);
+   insert into Student values (8,'Clint','Borivali','IT',99);
+   insert into Student values (9,'Orvell','Malad','IT',11);
+   insert into Student values (10,'Manuel','Shivaji Park','cs',12);
+
+	Query returned successfully: one row affected, 11 msec execution time.
+
+3) create view view1 as select id,name,marks from Student;
+   select * from view1;
+
+	Total query runtime: 13 msec
+	10 rows retrieved.
+
+4) create view view2 as select * from Student where marks>70;
+   select * from view2;
+
+	Total query runtime: 13 msec
+	2 rows retrieved.
+
+5) create view view3 as select id,dept,marks from Student where marks<50;
+   select * from view3;
+
+	Total query runtime: 11 msec
+	5 rows retrieved.
+
+6) create view view4 as select id,name,dept from Student;
+   select * from view4;
+
+	Total query runtime: 12 msec
+	10 rows retrieved.
+
+7) create view view5 as select * from Student where dept='CS';
+   select * from view5;
+
+	Total query runtime: 184 msec
+	2 rows retrieved.
+
+8) create view view6 as select id,name,address from Student where dept='CS' OR dept='IT';
+   select * from view6;
+
+	Total query runtime: 14 msec
+	7 rows retrieved.
+
+9) update view1 set marks=40 where id=1; 
+   select * from view1;
+   drop view view6;

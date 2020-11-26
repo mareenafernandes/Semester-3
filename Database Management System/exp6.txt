@@ -1,0 +1,95 @@
+1) create table company1(id int, name text not null, age int not null, address varchar(50),salary real);
+
+	Query returned successfully with no result in 23 msec.
+
+2) insert into company1 values(101,NULL,NULL,'Mumbai',100202);
+   insert into company1 values(102,NULL,NULL,'Nashik',328600);
+   insert into company1 values(103,NULL,NULL,'Nagpur',180000);
+   insert into company1 values(104,'Shania',24,'Gujarat',134000);
+   insert into company1 values(105,'Keon',27,'Delhi',2858511);
+
+	ERROR:  null value in column "name" violates not-null constraint
+	DETAIL:  Failing row contains (101, null, null, Mumbai, 100202).
+
+	********** Error **********
+
+	ERROR: null value in column "name" violates not-null constraint
+	SQL state: 23502
+	Detail: Failing row contains (101, null, null, Mumbai, 100202).
+
+3) create table company3(id int not null,name text not null, age int unique, address varchar(50), salary real );
+
+	NOTICE:  CREATE TABLE / UNIQUE will create implicit index "company3_age_key" for table "company3"
+	Query returned successfully with no result in 54 msec.
+
+4) insert into company3 values(201,'Ashelle',19,'Delhi',102000);
+   insert into company3 values(202,'Sharmila',19,'Mumbai',180030);
+   insert into company3 values(203,'Vidhi',20,'Sion',196730);
+   insert into company3 values(204,'Krisha',24,'Mangalore',2346880);
+   insert into company3 values(205,'Komal',28,'Goa',2874900);
+
+	ERROR:  duplicate key value violates unique constraint "company3_age_key"
+	DETAIL:  Key (age)=(19) already exists.
+
+	********** Error **********
+
+	ERROR: duplicate key value violates unique constraint "company3_age_key"
+	SQL state: 23505
+	Detail: Key (age)=(19) already exists.
+
+5) create table company4(id int primary key, name text, age int, address varchar(50), salary real);
+
+	NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "company4_pkey" for table "company4"
+	Query returned successfully with no result in 42 msec.
+
+6) insert into company4 values(301,'Samuel',19,'Mumbai',1020);
+   insert into company4 values(302,'Avicia',20,'Delhi',1030);
+   insert into company4 values(302,'Shane',21,'Punjab',1040);
+   insert into company4 values(303,'Shanti',22,'Kashmir',1050);
+   insert into company4 values(304,'Simran',23,'Kerela',1070);
+
+	ERROR:  duplicate key value violates unique constraint "company4_pkey"
+	DETAIL:  Key (id)=(302) already exists.
+	
+	********** Error **********
+
+	ERROR: duplicate key value violates unique constraint "company4_pkey"
+	SQL state: 23505
+	Detail: Key (id)=(302) already exists.
+
+7) create table employe( id int primary key, name text, age int, address varchar(50), salary real);
+	
+	NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "employe_pkey" for table "employe"
+	Query returned successfully with no result in 42 msec.
+
+   create table department(id int primary key, name varchar(50) not null, emp_id int references employee(id ) );
+
+	NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "department_pkey" for table "department"
+	Query returned successfully with no result in 42 msec.
+
+8) insert into employe values(1,'Mareena',19,'Bandra',1200);
+   insert into employe values(2,'Romeiro',14,'SantaCruz',1212);
+
+	Query returned successfully: one row affected, 14 msec execution time.
+
+9) insert into department values(1,'Asha',3);
+
+	ERROR:  insert or update on table "department" violates foreign key constraint "department_emp_id_fkey"
+	DETAIL:  Key (emp_id)=(3) is not present in table "employe".
+
+10) create table company5( id int, name text, age int, address varchar(50), salary real check(salary > 0));
+
+	Query returned successfully with no result in 32 msec.
+
+11) insert into company5 values(01,'Mark',29,'Mangalore',-2);
+
+	ERROR:  new row for relation "company5" violates check constraint "company5_salary_check"
+	DETAIL:  Failing row contains (1, Mark, 29, Mangalore, -2).
+	
+	********** Error **********
+	
+	ERROR: new row for relation "company5" violates check constraint "company5_salary_check"
+	SQL state: 23514
+	Detail: Failing row contains (1, Mark, 29, Mangalore, -2).
+
+

@@ -1,0 +1,109 @@
+1) create or replace function factorial(num numeric)
+   returns numeric
+   AS
+   $$
+   DECLARE
+   i numeric;
+   fact numeric;
+   BEGIN
+   for i in 1..num
+   loop
+   fact:= fact*i;
+   END LOOP;
+
+   Return fact;
+   End$$
+   language plpgsql;
+
+	Query returned successfully with no result in 13 msec.
+
+   select factorial(5)
+
+
+2) create table emp(id int,name varchar(20),salary numeric(10,2));
+
+	Query returned successfully with no result in 13 msec.
+
+   insert into emp values(1,'Raul',12200.13);
+   insert into emp values(2,'Shounak', 300059.00);
+   insert into emp values(3,'Saif',102020.69);
+   insert into emp values(4,'Soumil',24900.90);
+   insert into emp values(5,'Shantanu',11100.46);
+   select * from emp;
+
+
+3) create or replace function avg_salary()
+
+   returns numeric
+   AS
+   $$
+   DECLARE
+   i numeric;
+   BEGIN
+   Select avg(salary) into  i  from emp;
+   Return i;
+   End$$
+   language plpgsql;
+
+	Query returned successfully with no result in 13 msec.
+
+   select avg_salary()
+
+
+4) create or replace function trig1()
+   returns trigger 
+   AS
+   $$
+   BEGIN
+   raise notice 'Deletion not allowed';
+   RETURN  NULL;
+   END;
+   $$
+   language plpgsql;
+
+	Query returned successfully with no result in 13 msec.
+
+  delete from emp where id=3
+
+	Query returned successfully: one row affected, 12 msec execution time.
+
+5) CREATE OR REPLACE FUNCTION trig2()
+   returns trigger 
+   AS
+   $$
+   BEGIN
+   raise notice 'Updated table ';
+   RETURN  NEW;
+   END;
+   $$
+   language plpgsql;
+
+	Query returned successfully with no result in 12 msec.
+
+   update emp set id=1 where id=2
+
+	Query returned successfully: one row affected, 11 msec execution time.
+
+6) DO
+   $$
+   DECLARE
+   emp_rec emp%ROWTYPE;
+   emp_cur cursor for SELECT * from emp where salary>100000;
+   BEGIN
+   open emp_cur;
+   LOOP
+   FETCH emp_cur into emp_rec;
+   EXIT WHEN NOT FOUND;
+   raise notice 'Name %',emp_rec.name;
+   raise notice 'Salary %',emp_rec.salary;
+   END LOOP;
+   CLOSE emp_cur;
+   END $$
+   language plpgsql;
+
+	NOTICE:  Name Shounak
+	NOTICE:  Salary 300059.00
+
+
+	Query returned successfully with no result in 16 msec.
+
