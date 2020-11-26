@@ -1,0 +1,34 @@
+1) Create table Employee(empno numeric(4), empname varchar(20),designation varchar(20),salary numeric(8,2));
+
+	Query returned successfully with no result in 11 msec.
+
+2)alter table Employee
+  alter column empno type numeric(6);
+
+	Query returned successfully with no result in 11 msec.
+
+3)alter table Employee
+  alter column empno type numeric(8),
+  alter column empname type varchar(25);
+
+	Query returned successfully with no result in 11 msec.
+
+4)alter table Employee add qualification varchar(6);
+
+	Query returned successfully with no result in 14 msec.
+
+5)alter table Employee add dob date, add doj date;
+
+	Query returned successfully with no result in 11 msec.
+
+6)alter table Employee drop doj;
+
+	Query returned successfully with no result in 12 msec.
+
+7)alter table Employee drop dob, drop qualification;
+
+	Query returned successfully with no result in 12 msec.
+
+8)truncate table Employee; 
+
+	Query returned successfully with no result in 11 msec.
